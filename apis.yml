@@ -39,7 +39,13 @@ apis:
       - Load Balancing
       - Fault Tolerance
       - Frameworks
-    properties: []
+    properties:
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/moleculer/refs/heads/main/json-schema/moleculer-config.json
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/moleculer/refs/heads/main/json-schema/moleculer-service.json
 common:
   - type: Website
     url: https://moleculer.services/

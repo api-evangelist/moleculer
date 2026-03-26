@@ -1,0 +1,215 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/moleculer/json-schema/moleculer-service.json",
+  "title": "Moleculer Service Schema",
+  "description": "JSON Schema for a Moleculer service definition, including actions, events, methods, lifecycle hooks, and mixins.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique service name."
+    },
+    "version": {
+      "description": "Service version (number or string).",
+      "oneOf": [
+        { "type": "integer" },
+        { "type": "string" }
+      ]
+    },
+    "settings": {
+      "type": "object",
+      "description": "Service settings accessible via this.settings.",
+      "additionalProperties": true
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Custom metadata for the service.",
+      "additionalProperties": true
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "Services that must be available before this service starts.",
+      "items": {
+        "oneOf": [
+          { "type": "string" },
+          {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "version": {
+                "oneOf": [
+                  { "type": "integer" },
+                  { "type": "string" }
+                ]
+              }
+            },
+            "required": ["name"]
+          }
+        ]
+      }
+    },
+    "mixins": {
+      "type": "array",
+      "description": "Mixin schemas to merge into this service.",
+      "items": {
+        "type": "object"
+      }
+    },
+    "actions": {
+      "type": "object",
+      "description": "Service action definitions.",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "params": {
+                "type": "object",
+                "description": "Parameter validation schema.",
+                "additionalProperties": true
+              },
+              "cache": {
+                "description": "Caching configuration for this action.",
+                "oneOf": [
+                  { "type": "boolean" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "keys": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                      },
+                      "ttl": { "type": "integer" }
+                    },
+                    "additionalProperties": true
+                  }
+                ]
+              },
+              "timeout": {
+                "type": "integer",
+                "description": "Action timeout in milliseconds."
+              },
+              "retryPolicy": {
+                "type": "object",
+                "properties": {
+                  "enabled": { "type": "boolean" },
+                  "retries": { "type": "integer" },
+                  "delay": { "type": "integer" }
+                },
+                "additionalProperties": true
+              },
+              "bulkhead": {
+                "type": "object",
+                "properties": {
+                  "enabled": { "type": "boolean" },
+                  "concurrency": { "type": "integer" }
+                },
+                "additionalProperties": true
+              },
+              "circuitBreaker": {
+                "type": "object",
+                "properties": {
+                  "enabled": { "type": "boolean" },
+                  "threshold": { "type": "number" }
+                },
+                "additionalProperties": true
+              },
+              "hooks": {
+                "type": "object",
+                "description": "Before and after hooks for this action.",
+                "properties": {
+                  "before": {},
+                  "after": {}
+                },
+                "additionalProperties": true
+              },
+              "visibility": {
+                "type": "string",
+                "description": "Action visibility.",
+                "enum": ["published", "public", "protected", "private"],
+                "default": "published"
+              },
+              "rest": {
+                "description": "REST API gateway mapping.",
+                "oneOf": [
+                  { "type": "string", "description": "Short form, e.g., GET /users" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "method": { "type": "string", "enum": ["GET", "POST", "PUT", "DELETE", "PATCH"] },
+                      "path": { "type": "string" }
+                    }
+                  }
+                ]
+              }
+            },
+            "additionalProperties": true
+          },
+          { "type": "boolean", "const": false, "description": "Set to false to disable an inherited action." }
+        ]
+      }
+    },
+    "events": {
+      "type": "object",
+      "description": "Event handler definitions.",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "group": {
+                "type": "string",
+                "description": "Event group name."
+              },
+              "params": {
+                "type": "object",
+                "description": "Event parameter validation schema.",
+                "additionalProperties": true
+              }
+            },
+            "additionalProperties": true
+          },
+          { "type": "boolean" }
+        ]
+      }
+    },
+    "methods": {
+      "type": "object",
+      "description": "Private methods available within the service.",
+      "additionalProperties": true
+    },
+    "hooks": {
+      "type": "object",
+      "description": "Service-level action hooks.",
+      "properties": {
+        "before": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "after": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "error": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "started": {
+      "type": "string",
+      "description": "Lifecycle hook: called when the service starts (function reference)."
+    },
+    "stopped": {
+      "type": "string",
+      "description": "Lifecycle hook: called when the service stops (function reference)."
+    },
+    "created": {
+      "type": "string",
+      "description": "Lifecycle hook: called when the service is created (function reference)."
+    }
+  },
+  "required": ["name"],
+  "additionalProperties": true
+}

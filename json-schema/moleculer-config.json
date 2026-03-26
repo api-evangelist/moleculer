@@ -1,0 +1,396 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/moleculer/json-schema/moleculer-config.json",
+  "title": "Moleculer Broker Configuration",
+  "description": "JSON Schema for the moleculer.config.js broker configuration file, covering transporter, serializer, cacher, logger, metrics, tracing, and other broker options.",
+  "type": "object",
+  "properties": {
+    "namespace": {
+      "type": "string",
+      "description": "Namespace for node segmentation.",
+      "default": ""
+    },
+    "nodeID": {
+      "type": "string",
+      "description": "Unique node identifier. Auto-generated if not set."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Custom metadata for the node.",
+      "additionalProperties": true
+    },
+    "logger": {
+      "description": "Logger configuration. Can be boolean, string, object, or array.",
+      "oneOf": [
+        { "type": "boolean" },
+        { "type": "string" },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "Logger type.",
+              "enum": ["Console", "File", "Pino", "Bunyan", "Winston", "Debug", "Log4js"]
+            },
+            "options": {
+              "type": "object",
+              "description": "Logger-specific options.",
+              "properties": {
+                "level": {
+                  "type": "string",
+                  "enum": ["trace", "debug", "info", "warn", "error", "fatal"],
+                  "default": "info"
+                },
+                "colors": {
+                  "type": "boolean",
+                  "default": true
+                },
+                "moduleColors": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "formatter": {
+                  "type": "string",
+                  "enum": ["full", "short", "simple"]
+                },
+                "autoPadding": {
+                  "type": "boolean",
+                  "default": false
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      ]
+    },
+    "transporter": {
+      "description": "Transporter for inter-node communication.",
+      "oneOf": [
+        { "type": "string", "description": "Connection string (e.g., nats://localhost:4222, redis://localhost:6379)." },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "Transporter type.",
+              "enum": ["NATS", "Redis", "MQTT", "AMQP", "AMQP10", "STAN", "Kafka", "TCP"]
+            },
+            "options": {
+              "type": "object",
+              "description": "Transporter-specific options.",
+              "additionalProperties": true
+            }
+          }
+        },
+        { "type": "null" }
+      ]
+    },
+    "cacher": {
+      "description": "Cacher configuration for action results.",
+      "oneOf": [
+        { "type": "boolean" },
+        { "type": "string" },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["Memory", "MemoryLRU", "Redis", "RedisSentinel"]
+            },
+            "options": {
+              "type": "object",
+              "properties": {
+                "ttl": {
+                  "type": "integer",
+                  "description": "Default TTL in seconds.",
+                  "default": 30
+                },
+                "maxParamsLength": {
+                  "type": "integer",
+                  "default": 100
+                },
+                "redis": {
+                  "type": "string",
+                  "description": "Redis connection string."
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        },
+        { "type": "null" }
+      ]
+    },
+    "serializer": {
+      "description": "Serializer for message encoding.",
+      "oneOf": [
+        { "type": "string", "enum": ["JSON", "Avro", "MsgPack", "Notepack", "ProtoBuf", "Thrift", "CBOR"] },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "options": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        },
+        { "type": "null" }
+      ],
+      "default": "JSON"
+    },
+    "requestTimeout": {
+      "type": "integer",
+      "description": "Request timeout in milliseconds (0 = disabled).",
+      "default": 0
+    },
+    "retryPolicy": {
+      "type": "object",
+      "description": "Retry policy for failed requests.",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "retries": {
+          "type": "integer",
+          "default": 5
+        },
+        "delay": {
+          "type": "integer",
+          "description": "Initial delay in milliseconds.",
+          "default": 100
+        },
+        "maxDelay": {
+          "type": "integer",
+          "description": "Maximum delay in milliseconds.",
+          "default": 1000
+        },
+        "factor": {
+          "type": "number",
+          "description": "Backoff factor.",
+          "default": 2
+        },
+        "check": {
+          "type": "string",
+          "description": "Error check function expression."
+        }
+      },
+      "additionalProperties": true
+    },
+    "contextParamsCloning": {
+      "type": "boolean",
+      "description": "Clone context params for safety.",
+      "default": false
+    },
+    "maxCallLevel": {
+      "type": "integer",
+      "description": "Maximum nested call level to prevent infinite loops.",
+      "default": 0
+    },
+    "heartbeatInterval": {
+      "type": "integer",
+      "description": "Heartbeat interval in seconds.",
+      "default": 10
+    },
+    "heartbeatTimeout": {
+      "type": "integer",
+      "description": "Heartbeat timeout in seconds.",
+      "default": 30
+    },
+    "tracking": {
+      "type": "object",
+      "description": "Request tracking and graceful shutdown configuration.",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "shutdownTimeout": {
+          "type": "integer",
+          "description": "Shutdown timeout in milliseconds.",
+          "default": 5000
+        }
+      },
+      "additionalProperties": true
+    },
+    "disableBalancer": {
+      "type": "boolean",
+      "description": "Disable built-in request balancer (for transporter balancing).",
+      "default": false
+    },
+    "registry": {
+      "type": "object",
+      "description": "Service registry options.",
+      "properties": {
+        "strategy": {
+          "type": "string",
+          "description": "Load balancing strategy.",
+          "enum": ["RoundRobin", "Random", "CpuUsage", "Latency", "Shard"],
+          "default": "RoundRobin"
+        },
+        "preferLocal": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "circuitBreaker": {
+      "type": "object",
+      "description": "Circuit breaker configuration.",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "threshold": {
+          "type": "number",
+          "description": "Failure rate threshold (0.0 - 1.0).",
+          "default": 0.5
+        },
+        "minRequestCount": {
+          "type": "integer",
+          "default": 20
+        },
+        "windowTime": {
+          "type": "integer",
+          "description": "Time window in seconds.",
+          "default": 60
+        },
+        "halfOpenTime": {
+          "type": "integer",
+          "description": "Half-open state duration in milliseconds.",
+          "default": 10000
+        },
+        "check": {
+          "type": "string",
+          "description": "Error check function expression."
+        }
+      },
+      "additionalProperties": true
+    },
+    "bulkhead": {
+      "type": "object",
+      "description": "Bulkhead configuration for concurrency limiting.",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "concurrency": {
+          "type": "integer",
+          "default": 10
+        },
+        "maxQueueSize": {
+          "type": "integer",
+          "default": 100
+        }
+      },
+      "additionalProperties": true
+    },
+    "validator": {
+      "description": "Parameter validator.",
+      "oneOf": [
+        { "type": "boolean" },
+        { "type": "string" },
+        { "type": "object" }
+      ],
+      "default": true
+    },
+    "errorHandler": {
+      "type": "string",
+      "description": "Global error handler function name."
+    },
+    "metrics": {
+      "type": "object",
+      "description": "Metrics configuration.",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "reporter": {
+          "oneOf": [
+            { "type": "string" },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Console", "CSV", "Datadog", "Event", "Prometheus", "StatsD"]
+                },
+                "options": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            },
+            {
+              "type": "array",
+              "items": { "type": "object" }
+            }
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "tracing": {
+      "type": "object",
+      "description": "Distributed tracing configuration.",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "exporter": {
+          "oneOf": [
+            { "type": "string" },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Console", "Datadog", "Event", "EventLegacy", "Jaeger", "Zipkin", "NewRelic"]
+                },
+                "options": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            },
+            {
+              "type": "array",
+              "items": { "type": "object" }
+            }
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "middlewares": {
+      "type": "array",
+      "description": "List of middleware to load.",
+      "items": {
+        "type": "object"
+      }
+    },
+    "replCommands": {
+      "type": "array",
+      "description": "Custom REPL commands.",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": true
+}
