@@ -1,11 +1,21 @@
 aid: moleculer
 name: Moleculer
 description: >-
-  Moleculer is a modern and powerful microservices framework for Node.js with built-in service discovery, load balancing, and fault tolerance.
+  Moleculer is a fast, modern, and powerful microservices framework for
+  Node.js. It provides built-in service discovery, load balancing, fault
+  tolerance with circuit breaker, request retries, distributed event handling,
+  and support for multiple serializers and transporters including NATS, Redis,
+  MQTT, and AMQP.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Microservices
+  - Node.js
+  - JavaScript
+  - Service Discovery
+  - Load Balancing
+  - Fault Tolerance
+  - Frameworks
 url: >-
   https://raw.githubusercontent.com/api-evangelist/moleculer/refs/heads/main/apis.yml
 created: '2026-03-26'
@@ -15,14 +25,34 @@ apis:
   - aid: moleculer:moleculer
     name: Moleculer
     description: >-
-      Moleculer is a modern and powerful microservices framework for Node.js with built-in service discovery, load balancing, and fault tolerance.
-    humanURL: https://github.com/api-evangelist/moleculer
+      Moleculer is a fast, modern, and powerful microservices framework for
+      Node.js. It provides built-in service discovery, load balancing, fault
+      tolerance with circuit breaker, request retries, distributed event
+      handling, and support for multiple serializers and transporters including
+      NATS, Redis, MQTT, and AMQP.
+    humanURL: https://moleculer.services/
     tags:
       - Microservices
+      - Node.js
+      - JavaScript
+      - Service Discovery
+      - Load Balancing
+      - Fault Tolerance
+      - Frameworks
     properties: []
 common:
   - type: Website
-    url: https://github.com/api-evangelist/moleculer
+    url: https://moleculer.services/
+  - type: Documentation
+    url: https://moleculer.services/docs/0.14/
+  - type: Getting Started
+    url: https://moleculer.services/docs/0.14/usage.html
+  - type: GitHub Organization
+    url: https://github.com/moleculerjs
+  - type: GitHub Repository
+    url: https://github.com/moleculerjs/moleculer
+  - type: Examples
+    url: https://github.com/moleculerjs/moleculer-examples
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
