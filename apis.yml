@@ -9,13 +9,13 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Microservices
-  - Node.js
-  - JavaScript
-  - Service Discovery
-  - Load Balancing
   - Fault Tolerance
   - Frameworks
+  - JavaScript
+  - Load Balancing
+  - Microservices
+  - Node.js
+  - Service Discovery
 url: >-
   https://raw.githubusercontent.com/api-evangelist/moleculer/refs/heads/main/apis.yml
 created: '2026-03-26'
@@ -32,13 +32,13 @@ apis:
       NATS, Redis, MQTT, and AMQP.
     humanURL: https://moleculer.services/
     tags:
-      - Microservices
-      - Node.js
-      - JavaScript
-      - Service Discovery
-      - Load Balancing
       - Fault Tolerance
       - Frameworks
+      - JavaScript
+      - Load Balancing
+      - Microservices
+      - Node.js
+      - Service Discovery
     properties:
       - type: JSONSchema
         url: >-
