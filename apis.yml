@@ -51,11 +51,11 @@ common:
     url: https://moleculer.services/
   - type: Documentation
     url: https://moleculer.services/docs/0.14/
-  - type: Getting Started
+  - type: GettingStarted
     url: https://moleculer.services/docs/0.14/usage.html
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/moleculerjs
-  - type: GitHub Repository
+  - type: GitHubRepository
     url: https://github.com/moleculerjs/moleculer
   - type: Examples
     url: https://github.com/moleculerjs/moleculer-examples
