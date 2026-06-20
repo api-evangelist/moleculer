@@ -7,7 +7,7 @@ description: >-
   and support for multiple serializers and transporters including NATS, Redis,
   MQTT, and AMQP.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Fault Tolerance
   - Frameworks
