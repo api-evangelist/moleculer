@@ -59,7 +59,7 @@ common:
     url: https://github.com/moleculerjs/moleculer
   - type: Examples
     url: https://github.com/moleculerjs/moleculer-examples
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://moleculer.services/llms.txt
 maintainers:
   - FN: Kin Lane
