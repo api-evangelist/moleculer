@@ -47,6 +47,8 @@ apis:
         url: >-
           https://raw.githubusercontent.com/api-evangelist/moleculer/refs/heads/main/json-schema/moleculer-service.json
 common:
+  - type: DomainSecurity
+    url: security/moleculer-domain-security.yml
   - type: Website
     url: https://moleculer.services/
   - type: Documentation
