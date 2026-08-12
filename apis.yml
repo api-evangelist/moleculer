@@ -59,6 +59,19 @@ apis:
         url: >-
           https://raw.githubusercontent.com/api-evangelist/moleculer/refs/heads/main/json-schema/moleculer-service.json
 common:
+  - type: IssueTracker
+    url: https://github.com/moleculerjs/moleculer/issues
+  - type: Releases
+    url: https://github.com/moleculerjs/moleculer/releases
+  - type: SecurityPolicy
+    url: https://github.com/moleculerjs/moleculer/blob/master/SECURITY.md
+  - type: CodeOfConduct
+    url: https://github.com/moleculerjs/moleculer/blob/master/CODE_OF_CONDUCT.md
+  - type: ContributionGuide
+    url: https://github.com/moleculerjs/moleculer/blob/master/CONTRIBUTING.md
+  - type: License
+    name: MIT
+    url: https://github.com/moleculerjs/moleculer/blob/master/LICENSE
   - type: DomainSecurity
     url: security/moleculer-domain-security.yml
   - type: Website
