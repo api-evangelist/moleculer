@@ -34,6 +34,14 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/moleculer.png
 tags:
   - Fault Tolerance
+  - Framework
+  - JavaScript
+  - Load Balancing
+  - Microservices
+  - Node.js
+  - Service Discovery
+tags_raw:
+  - Fault Tolerance
   - Frameworks
   - JavaScript
   - Load Balancing
@@ -56,6 +64,14 @@ apis:
       NATS, Redis, MQTT, and AMQP.
     humanURL: https://moleculer.services/
     tags:
+      - Fault Tolerance
+      - Framework
+      - JavaScript
+      - Load Balancing
+      - Microservices
+      - Node.js
+      - Service Discovery
+    tags_raw:
       - Fault Tolerance
       - Frameworks
       - JavaScript
