@@ -51,7 +51,7 @@ tags_raw:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/moleculer/refs/heads/main/apis.yml
 created: '2026-03-26'
-modified: '2026-04-28'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
   - aid: moleculer:moleculer
@@ -87,6 +87,10 @@ apis:
         url: >-
           https://raw.githubusercontent.com/api-evangelist/moleculer/refs/heads/main/json-schema/moleculer-service.json
 common:
+  - url: https://medium.com/moleculer
+    type: Blog
+  - url: https://medium.com/feed/moleculer
+    type: BlogRSS
   - type: IssueTracker
     url: https://github.com/moleculerjs/moleculer/issues
   - type: Releases
