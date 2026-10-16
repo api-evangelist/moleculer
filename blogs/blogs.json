@@ -1,0 +1,18 @@
+{
+  "repo": "moleculer",
+  "feeds": [
+    {
+      "source": "https://medium.com/moleculer",
+      "error": "HTTPError"
+    },
+    {
+      "source": "https://medium.com/feed/moleculer",
+      "feed_url": "https://medium.com/feed/moleculer",
+      "title": "",
+      "saved": 1,
+      "method": "feed"
+    }
+  ],
+  "post_count": 1,
+  "fetched": "2026-10-10T13:15:00Z"
+}
